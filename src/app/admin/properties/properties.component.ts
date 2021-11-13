@@ -120,7 +120,6 @@ export class PropertiesComponent implements OnInit {
    }
 
  ngOnInit() {
-	//  this.reportApi();
 	this.buildForm();
   }
 
@@ -140,9 +139,7 @@ export class PropertiesComponent implements OnInit {
     const row = this.gridApi.getFilterInstance(
       this.filters['text']
     );
-	console.log(row, 'row data');
     let filter = this.form.value['text'];
-	console.log(filter, 'text filter');
     let condition = {
       type: 'startsWith',
       filter
@@ -152,8 +149,8 @@ export class PropertiesComponent implements OnInit {
   }
 
    /**
-   * Reset the filter
-   */
+	* Reset the filter
+	*/
 	reset() {
 		this.form.reset();
 		const contactRow = this.gridApi.getFilterInstance(this.filters['text']);
@@ -161,11 +158,13 @@ export class PropertiesComponent implements OnInit {
 		this.gridApi.onFilterChanged();
 	  }
 
+	  /**
+	   * Api to get all properties data
+	   */
    reportApi(){
 	this.rowData = this.service.getAllData().pipe(
 			map((res:any) => {
 				res.data.map((result:any) => {
-					console.log(result, 'rowData')
 					this.rowData = result;
 				});
 			})
